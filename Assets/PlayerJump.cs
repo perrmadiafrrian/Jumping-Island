@@ -15,7 +15,7 @@ public class PlayerJump : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!isJumping) {
+		if (!isJumping && cube != null) {
 			transform.position = new Vector3 (cube.position.x, 1f, cube.position.z);
 		}
 	}
