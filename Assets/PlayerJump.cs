@@ -19,8 +19,9 @@ public class PlayerJump : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!isJumping && cube != null) {
-			transform.position = new Vector3 (cube.position.x, 1f, cube.position.z);
+			transform.position = new Vector3 (cube.position.x, transform.position.y, cube.position.z);
 		}
+
 
 	}
 
@@ -29,6 +30,8 @@ public class PlayerJump : MonoBehaviour {
 	}
 
 	public void Jump(Transform target) {
+		StartCoroutine (JumpAnim(target));
+		/*
 		if (cube != null && target.name != cube.name) {
 			if (cube.GetComponent<CubeStarter> () == null) {
 				cube.GetComponent<CubeMove> ().DestroyMe ();
@@ -38,6 +41,41 @@ public class PlayerJump : MonoBehaviour {
 
 			setCube (target);
 		}
+		*/
 		//rb.AddForce (Vector3.up * 10f, ForceMode.Impulse);
+	}
+
+	IEnumerator JumpAnim(Transform target) {
+
+		if (cube != null && target.name != cube.name) {
+			if (cube.GetComponent<CubeStarter> () == null) {
+				cube.GetComponent<CubeMove> ().DestroyMe ();
+			} else {
+				cube.GetComponent<CubeStarter> ().DestroyMe ();
+			}
+
+			Vector3 offset = new Vector3(0f,1.5f,0f);
+
+			float t = 0f;
+			float distance = Vector3.Distance (transform.position, target.position + offset);
+
+			Vector3 startPosition = transform.position;
+
+			Vector3 topPosition = (target.position + startPosition);
+			topPosition.x = topPosition.x / 2f;
+			topPosition.y = topPosition.y + distance;
+			topPosition.z = topPosition.z / 2f;
+
+			
+			while(t<1f) {
+				t += Time.deltaTime * 10f/distance;
+				transform.position = Vector3.Lerp (startPosition, Vector3.Lerp (topPosition, target.position+offset, t), t);
+				yield return null;
+			}
+
+			setCube (target);
+		}
+
+		yield return null;
 	}
 }
