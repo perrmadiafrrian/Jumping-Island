@@ -31,21 +31,6 @@ public class PlayerJump : MonoBehaviour {
 
 	public void Jump(Transform target) {
 		StartCoroutine (JumpAnim(target));
-		/*
-		if (cube != null && target.name != cube.name) {
-			if (cube.GetComponent<CubeStarter> () == null) {
-				cube.GetComponent<CubeMove> ().DestroyMe ();
-			} else {
-				cube.GetComponent<CubeStarter> ().DestroyMe ();
-			}
-
-			setCube (target);
-		}
-<<<<<<< HEAD
-=======
-		*/
-		//rb.AddForce (Vector3.up * 10f, ForceMode.Impulse);
->>>>>>> origin/master
 	}
 
 	IEnumerator JumpAnim(Transform target) {
