@@ -38,6 +38,5 @@ public class PlayerJump : MonoBehaviour {
 
 			setCube (target);
 		}
-		//rb.AddForce (Vector3.up * 10f, ForceMode.Impulse);
 	}
 }

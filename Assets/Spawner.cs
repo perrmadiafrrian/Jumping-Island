@@ -6,7 +6,6 @@ public class Spawner : MonoBehaviour {
 
 	public GameObject go;
 
-
 	// Use this for initialization
 	void Start () {
 		float x = transform.position.x;
@@ -20,8 +19,7 @@ public class Spawner : MonoBehaviour {
 	}
 
 	IEnumerator spawn(Vector3 pos) {
-		Transform g = Instantiate (go, pos, Quaternion.identity) as Transform;
-		g.GetComponent<EventTrigger> ();
+		GameObject g = Instantiate (go, pos, Quaternion.identity) as GameObject;
 		yield return null;
 	}
 }
