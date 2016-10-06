@@ -8,9 +8,12 @@ public class PlayerJump : MonoBehaviour {
 	private Transform cube;
 	private bool isJumping;
 
+	//private Rigidbody rb;
+
 	// Use this for initialization
 	void Start () {
 		setCube (starterCube);
+	//	rb = GetComponent<Rigidbody> ();
 	}
 	
 	// Update is called once per frame
@@ -18,6 +21,7 @@ public class PlayerJump : MonoBehaviour {
 		if (!isJumping && cube != null) {
 			transform.position = new Vector3 (cube.position.x, 1f, cube.position.z);
 		}
+
 	}
 
 	void setCube(Transform c) {
@@ -25,7 +29,7 @@ public class PlayerJump : MonoBehaviour {
 	}
 
 	public void Jump(Transform target) {
-		if (target.name != cube.name) {
+		if (cube != null && target.name != cube.name) {
 			if (cube.GetComponent<CubeStarter> () == null) {
 				cube.GetComponent<CubeMove> ().DestroyMe ();
 			} else {
@@ -34,5 +38,6 @@ public class PlayerJump : MonoBehaviour {
 
 			setCube (target);
 		}
+		//rb.AddForce (Vector3.up * 10f, ForceMode.Impulse);
 	}
 }
