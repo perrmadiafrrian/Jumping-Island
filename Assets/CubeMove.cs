@@ -74,4 +74,14 @@ public class CubeMove : MonoBehaviour {
 			StopCoroutine (RandomMove ());
 		yield return null;
 	}
+
+	void OnCollisionEnter(Collision col) {
+		if (col.transform.GetComponent<CubeMove> () != null)
+			col.transform.GetComponent<CubeMove> ().DestroyMe ();
+		else if (col.transform.GetComponent<CubeStarter> () != null) {
+			col.transform.GetComponent<CubeStarter> ().DestroyMe ();
+		} else {
+			Debug.Log ("error");
+		}
+	}
 }

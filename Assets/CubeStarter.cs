@@ -34,4 +34,14 @@ public class CubeStarter : MonoBehaviour {
 		targetLocation.y = -.5f;
 		transform.position = Vector3.MoveTowards (transform.position, targetLocation, Time.deltaTime * 3f);
 	}
+
+	void OnCollisionEnter(Collision col) {
+		if (col.transform.GetComponent<CubeMove> () != null)
+			col.transform.GetComponent<CubeMove> ().DestroyMe ();
+		else if (col.transform.GetComponent<CubeStarter> () != null) {
+			col.transform.GetComponent<CubeStarter> ().DestroyMe ();
+		} else {
+			Debug.Log ("error");
+		}
+	}
 }
