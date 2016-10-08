@@ -8,7 +8,7 @@ public class CubeStarter : MonoBehaviour {
 	new private Transform camera;
 	// Use this for initialization
 	void Start () {
-		if (Camera.main == null) {
+		if (Camera.main.transform == null) {
 			Debug.Log ("No Cam");
 		} else {
 			camera = Camera.main.transform;
@@ -32,6 +32,6 @@ public class CubeStarter : MonoBehaviour {
 	void Update () {
 		targetLocation = camera.forward * 20f + camera.position;
 		targetLocation.y = -.5f;
-		transform.position = Vector3.MoveTowards (transform.position, targetLocation, Time.deltaTime * 1f);
+		transform.position = Vector3.MoveTowards (transform.position, targetLocation, Time.deltaTime * 3f);
 	}
 }

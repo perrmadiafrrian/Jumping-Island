@@ -35,11 +35,13 @@ public class PlayerJump : MonoBehaviour {
 
 	IEnumerator JumpAnim(Transform target) {
 
-		if (cube != null && target.name != cube.name) {
+		if (cube != null && target.transform != cube.transform && Vector3.Distance(transform.position, target.position) < 10f) {
 			if (cube.GetComponent<CubeStarter> () == null) {
 				cube.GetComponent<CubeMove> ().DestroyMe ();
+				target.GetComponent<CubeMove> ().ImClicked ();
 			} else {
 				cube.GetComponent<CubeStarter> ().DestroyMe ();
+				target.GetComponent<CubeMove> ().ImClicked ();
 			}
 
 			Vector3 offset = new Vector3(0f,1.5f,0f);

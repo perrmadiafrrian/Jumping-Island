@@ -4,36 +4,38 @@ using System.Collections;
 
 public class CubeMove : MonoBehaviour {
 
+	public Spawner sp;
+
 	private bool rided;
-	private float x, z;
+	private GameObject player;
 
 	new private Transform camera;
 	// Use this for initialization
 	void Start () {
+		player = GameObject.FindGameObjectWithTag ("Player");
 		rided = false;
-		x = Random.Range (1f, 5f);
-		z = Random.Range (1f, 5f);
-
 		if (Camera.main == null) {
 			Debug.Log ("No Cam");
 		} else {
 			camera = Camera.main.transform;
 		}
+
+		StartCoroutine (RandomMove ());
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (!rided) {
-			Move(new Vector3(transform.position.x + x, -.5f, transform.position.z + z), 1f);
-		} else {
+		if (rided) {
 			Vector3 tp = camera.forward * 20f + camera.position;
 			tp.y = -.5f;
-			Move (tp, 1f);
+			Move (tp, 3f);
 		}
 	}
 
 	void Move(Vector3 targetLocation, float speed) {
 		transform.position = Vector3.MoveTowards (transform.position, targetLocation, Time.deltaTime * speed);
+		if (Vector3.Distance (transform.position, player.transform.position) > 25f)
+			DestroyMe ();
 	}
 
 	public void ImClicked() {
@@ -44,15 +46,32 @@ public class CubeMove : MonoBehaviour {
 	}
 
 	public void DestroyMe() {
+		sp.cubeDecr ();
 		Destroy (gameObject);
 	}
 
 	IEnumerator Strength() {
-		float str = 5f;
+		float str = 15f;
 		while (str > .2) {
 			str -= Time.deltaTime;
 			yield return null;
 		}
 		DestroyMe ();
+	}
+
+	IEnumerator RandomMove() {
+		bool still = true;
+		Vector3 t = new Vector3 (transform.position.x + Random.Range (-10f, 10f), -.5f, transform.position.z + Random.Range (-10f, 10f));
+		while (Vector3.Distance (transform.position, t) > .5f && !rided) {
+			Move (t, 1f);
+			if (Vector3.Distance (transform.position, t) < 1f)
+				still = false;
+			yield return null;
+		}
+		if (!rided && !still)
+			StartCoroutine (RandomMove ());
+		if(rided)
+			StopCoroutine (RandomMove ());
+		yield return null;
 	}
 }
