@@ -35,7 +35,8 @@ public class PlayerJump : MonoBehaviour {
 
 	IEnumerator JumpAnim(Transform target) {
 
-		if (cube != null && target.transform != cube.transform && Vector3.Distance(transform.position, target.position) < 10f) {
+		if (cube != null && target.transform != cube.transform && Vector3.Distance(transform.position, target.position) < 15f) {
+			isJumping = true;
 			if (cube.GetComponent<CubeStarter> () == null) {
 				cube.GetComponent<CubeMove> ().DestroyMe ();
 				target.GetComponent<CubeMove> ().ImClicked ();
@@ -64,8 +65,8 @@ public class PlayerJump : MonoBehaviour {
 			}
 
 			setCube (target);
+			isJumping = false;
 		}
-
 		yield return null;
 	}
 }

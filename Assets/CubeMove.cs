@@ -34,7 +34,7 @@ public class CubeMove : MonoBehaviour {
 
 	void Move(Vector3 targetLocation, float speed) {
 		transform.position = Vector3.MoveTowards (transform.position, targetLocation, Time.deltaTime * speed);
-		if (Vector3.Distance (transform.position, player.transform.position) > 70f)
+		if (Vector3.Distance (transform.position, player.transform.position) > 60f)
 			DestroyMe ();
 	}
 
