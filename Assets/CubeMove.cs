@@ -8,6 +8,7 @@ public class CubeMove : MonoBehaviour {
 
 	private bool rided;
 	private GameObject player;
+	private float str;
 
 	new private Transform camera;
 	// Use this for initialization
@@ -51,7 +52,7 @@ public class CubeMove : MonoBehaviour {
 	}
 
 	IEnumerator Strength() {
-		float str = 15f;
+		str = 15f;
 		while (str > .2) {
 			str -= Time.deltaTime;
 			yield return null;
@@ -83,5 +84,9 @@ public class CubeMove : MonoBehaviour {
 		} else {
 			Debug.Log ("error");
 		}
+	}
+
+	public float getStrength() {
+		return str;
 	}
 }

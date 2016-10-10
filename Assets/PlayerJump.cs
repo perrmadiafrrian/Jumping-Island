@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerJump : MonoBehaviour {
 
@@ -7,6 +8,7 @@ public class PlayerJump : MonoBehaviour {
 
 	private Transform cube;
 	private bool isJumping;
+	public Text text;
 
 	//private Rigidbody rb;
 
@@ -21,8 +23,11 @@ public class PlayerJump : MonoBehaviour {
 		if (!isJumping && cube != null) {
 			transform.position = new Vector3 (cube.position.x, transform.position.y, cube.position.z);
 		}
-
-
+		if (cube != null && cube.GetComponent<CubeStarter> () != null) {
+			text.text = ""+Mathf.RoundToInt(cube.GetComponent<CubeStarter> ().getStrength());
+		} else if (cube != null && cube.GetComponent<CubeMove> () != null) {
+			text.text = ""+Mathf.RoundToInt(cube.GetComponent<CubeMove> ().getStrength());
+		}
 	}
 
 	void setCube(Transform c) {

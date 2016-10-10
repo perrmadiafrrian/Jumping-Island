@@ -5,6 +5,7 @@ public class CubeStarter : MonoBehaviour {
 
 	private Vector3 targetLocation;
 
+	private float str;
 	new private Transform camera;
 	// Use this for initialization
 	void Start () {
@@ -13,6 +14,7 @@ public class CubeStarter : MonoBehaviour {
 		} else {
 			camera = Camera.main.transform;
 		}
+		StartCoroutine (Strength ());
 	}
 
 	public void DestroyMe() {
@@ -20,7 +22,7 @@ public class CubeStarter : MonoBehaviour {
 	}
 
 	IEnumerator Strength() {
-		float str = 5f;
+		str = 15f;
 		while (str > .2) {
 			str -= Time.deltaTime;
 			yield return null;
@@ -43,5 +45,9 @@ public class CubeStarter : MonoBehaviour {
 		} else {
 			Debug.Log ("error");
 		}
+	}
+
+	public float getStrength(){
+		return str;
 	}
 }
