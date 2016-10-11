@@ -40,9 +40,9 @@ public class CubeMove : MonoBehaviour {
 	}
 
 	public void ImClicked() {
-		if (!rided) {
-			rided = true;
-			StartCoroutine (Strength ());
+		if (!rided && Vector3.Distance(player.transform.position, transform.position) < 15f) {
+			rided = player.GetComponent<PlayerJump> ().Jump (transform);
+			if(rided) StartCoroutine (Strength ());
 		}
 	}
 
