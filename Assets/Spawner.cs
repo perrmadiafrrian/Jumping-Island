@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class Spawner : MonoBehaviour {
 
-	public GameObject go;
+	public GameObject[] go;
 
 	public float rangeDown = 10f;
 	public float rangeUp = 10f;
@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour {
 	}
 
 	IEnumerator spawn(Vector3 pos) {
-		GameObject g = Instantiate (go, pos, Quaternion.identity) as GameObject;
+		GameObject g = Instantiate (go[Mathf.RoundToInt(Random.Range(0,2))], pos, Quaternion.identity) as GameObject;
 		g.SetActive (true);
 		yield return null;
 	}

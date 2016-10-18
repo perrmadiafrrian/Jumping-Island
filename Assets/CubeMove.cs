@@ -27,7 +27,7 @@ public class CubeMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (rided) {
-			Vector3 tp = camera.forward * 20f + camera.position;
+			Vector3 tp = camera.forward * 10f + camera.position;
 			tp.y = -.5f;
 			Move (tp, 3f);
 		}
