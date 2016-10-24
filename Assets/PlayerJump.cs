@@ -29,10 +29,11 @@ public class PlayerJump : MonoBehaviour {
 			transform.position = new Vector3 (cube.position.x, transform.position.y, cube.position.z);
 		}
 		if (cube != null && cube.GetComponent<CubeStarter> () != null) {
-			text.text = ""+Mathf.RoundToInt(cube.GetComponent<CubeStarter> ().getStrength());
+			//text.text = ""+Mathf.RoundToInt(cube.GetComponent<CubeStarter> ().getStrength());
 		} else if (cube != null && cube.GetComponent<CubeMove> () != null) {
-			text.text = ""+Mathf.RoundToInt(cube.GetComponent<CubeMove> ().getStrength());
+			//text.text = ""+Mathf.RoundToInt(cube.GetComponent<CubeMove> ().getStrength());
 		}
+		text.text = ""+score;
 		if (cube == null) {
 			gameOver.SetActive (true);
 			gameOver.transform.localPosition = new Vector3 (0f, 0f, 10f);
