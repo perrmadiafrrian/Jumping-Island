@@ -20,7 +20,6 @@ public class PlayerJump : MonoBehaviour {
 	void Start () {
 		setCube (starterCube);
 		score = 0;
-	//	rb = GetComponent<Rigidbody> ();
 	}
 	
 	// Update is called once per frame
@@ -28,11 +27,11 @@ public class PlayerJump : MonoBehaviour {
 		if (!isJumping && cube != null) {
 			transform.position = new Vector3 (cube.position.x, transform.position.y, cube.position.z);
 		}
-		if (cube != null && cube.GetComponent<CubeStarter> () != null) {
+		//if (cube != null && cube.GetComponent<CubeStarter> () != null) {
 			//text.text = ""+Mathf.RoundToInt(cube.GetComponent<CubeStarter> ().getStrength());
-		} else if (cube != null && cube.GetComponent<CubeMove> () != null) {
+		//} else if (cube != null && cube.GetComponent<CubeMove> () != null) {
 			//text.text = ""+Mathf.RoundToInt(cube.GetComponent<CubeMove> ().getStrength());
-		}
+		//}
 		text.text = ""+score;
 		if (cube == null) {
 			gameOver.SetActive (true);
